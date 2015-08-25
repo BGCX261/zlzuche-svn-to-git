@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ZLzucheModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ZLzucheModelStoreContainer">
+          <EntitySet Name="BasicData" EntityType="ZLzucheModel.Store.BasicData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Car" EntityType="ZLzucheModel.Store.Car" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CarType" EntityType="ZLzucheModel.Store.CarType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="ZLzucheModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employee" EntityType="ZLzucheModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FocusImage" EntityType="ZLzucheModel.Store.FocusImage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LongRentCost" EntityType="ZLzucheModel.Store.LongRentCost" store:Type="Tables" store:Schema="dbo" store:Name="LongRentCost">
+            <DefiningQuery>SELECT 
+      [LongRentCost].[Id] AS [Id], 
+      [LongRentCost].[LongRentType] AS [LongRentType], 
+      [LongRentCost].[CarId] AS [CarId], 
+      [LongRentCost].[Price] AS [Price], 
+      [LongRentCost].[CreateBy] AS [CreateBy], 
+      [LongRentCost].[CreateTime] AS [CreateTime], 
+      [LongRentCost].[Remark] AS [Remark]
+      FROM [dbo].[LongRentCost] AS [LongRentCost]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="News" EntityType="ZLzucheModel.Store.News" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetails" EntityType="ZLzucheModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Orders" EntityType="ZLzucheModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="rzzlApply" EntityType="ZLzucheModel.Store.rzzlApply" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Shop" EntityType="ZLzucheModel.Store.Shop" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SysDict" EntityType="ZLzucheModel.Store.SysDict" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Car_CarType" Association="ZLzucheModel.Store.FK_Car_CarType">
+            <End Role="CarType" EntitySet="CarType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Car" Association="ZLzucheModel.Store.FK_OrderDetails_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="ZLzucheModel.Store.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customer" Association="ZLzucheModel.Store.FK_Orders_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Car" Association="ZLzucheModel.Store.FK_Shop_Car">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BasicData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="CarTypeId" Type="int" />
+          <Property Name="CarName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="BasicInsure" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreAuthorization" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Scale="2" />
+          <Property Name="IsMileage" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" />
+          <Property Name="clzdj" Type="nvarchar" MaxLength="50" />
+          <Property Name="clgzs" Type="nvarchar" MaxLength="50" />
+          <Property Name="ycspf" Type="nvarchar" MaxLength="50" />
+          <Property Name="1Yearzlfy" Type="nvarchar" MaxLength="50" />
+          <Property Name="2Yearzlfy" Type="nvarchar" MaxLength="50" />
+          <Property Name="3Yearzlfy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" />
+          <Property Name="carnum" Type="int" />
+          <Property Name="MonthPrice" Type="decimal" Scale="2" />
+          <Property Name="CarAge" Type="nvarchar" MaxLength="50" />
+          <Property Name="Derailleur" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CarType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CarTypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" />
+          <Property Name="Remark" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PapersType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PapersNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegisterTime" Type="datetime" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastIpAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDelete" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EmployeeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastIpAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" />
+          <Property Name="Remark" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="FocusImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="200" />
+          <Property Name="LinkURL" Type="nchar" MaxLength="10" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“ZLzuche.dbo.LongRentCost”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="LongRentCost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LongRentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarId" Type="int" />
+          <Property Name="Price" Type="decimal" Scale="2" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NewType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="CarId" Type="int" />
+          <Property Name="CarNum" Type="int" />
+          <Property Name="Price" Type="decimal" Scale="2" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GetCarTime" Type="datetime" />
+          <Property Name="ReturnCarTime" Type="datetime" />
+          <Property Name="HireDays" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deposit" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" />
+          <Property Name="isSendCar" Type="int" />
+          <Property Name="LinkMan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="RentMonth" Type="int" />
+        </EntityType>
+        <EntityType Name="rzzlApply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EnterpriseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Linkman" Type="nvarchar" MaxLength="50" />
+          <Property Name="LinkTel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="NeedInfo" Type="nvarchar" />
+          <Property Name="ApplyTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Describe" Type="nvarchar" />
+          <Property Name="Remark" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="SysDict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DictType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DictName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DictValue" Type="nvarchar" MaxLength="100" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <Association Name="FK_Car_CarType">
+          <End Role="CarType" Type="ZLzucheModel.Store.CarType" Multiplicity="0..1" />
+          <End Role="Car" Type="ZLzucheModel.Store.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="CarTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Car">
+          <End Role="Car" Type="ZLzucheModel.Store.Car" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="ZLzucheModel.Store.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="ZLzucheModel.Store.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="ZLzucheModel.Store.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customer">
+          <End Role="Customer" Type="ZLzucheModel.Store.Customer" Multiplicity="1" />
+          <End Role="Orders" Type="ZLzucheModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Car">
+          <End Role="Shop" Type="ZLzucheModel.Store.Shop" Multiplicity="1" />
+          <End Role="Car" Type="ZLzucheModel.Store.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZLzucheModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ZLzucheEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BasicData" EntityType="ZLzucheModel.BasicData" />
+          <EntitySet Name="CarType" EntityType="ZLzucheModel.CarType" />
+          <EntitySet Name="Customer" EntityType="ZLzucheModel.Customer" />
+          <EntitySet Name="Employee" EntityType="ZLzucheModel.Employee" />
+          <EntitySet Name="Shop" EntityType="ZLzucheModel.Shop" />
+          <EntitySet Name="rzzlApply" EntityType="ZLzucheModel.rzzlApply" />
+          <EntitySet Name="OrderDetails" EntityType="ZLzucheModel.OrderDetails" />
+          <EntitySet Name="SysDict" EntityType="ZLzucheModel.SysDict" />
+          <EntitySet Name="News" EntityType="ZLzucheModel.News" />
+          <EntitySet Name="LongRentCost" EntityType="ZLzucheModel.LongRentCost" />
+          <EntitySet Name="FocusImage" EntityType="ZLzucheModel.FocusImage" />
+          <EntitySet Name="Car" EntityType="ZLzucheModel.Car" />
+          <EntitySet Name="Orders" EntityType="ZLzucheModel.Orders" />
+          <AssociationSet Name="FK_Car_CarType" Association="ZLzucheModel.FK_Car_CarType">
+            <End Role="CarType" EntitySet="CarType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Car" Association="ZLzucheModel.FK_OrderDetails_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shop_Car" Association="ZLzucheModel.FK_Shop_Car">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customer" Association="ZLzucheModel.FK_Orders_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="ZLzucheModel.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="BasicData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CarType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CarTypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Describe" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Car" Relationship="ZLzucheModel.FK_Car_CarType" FromRole="CarType" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PapersType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PapersNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RegisterTime" Type="DateTime" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastIpAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsDelete" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Orders" Relationship="ZLzucheModel.FK_Orders_Customer" FromRole="Customer" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastIpAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Describe" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Province" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Describe" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="Remark" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Car" Relationship="ZLzucheModel.FK_Shop_Car" FromRole="Shop" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="rzzlApply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EnterpriseName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Linkman" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkTel" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NeedInfo" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ApplyTime" />
+          <Property Type="String" Name="Remark" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="OrderId" />
+          <Property Type="Int32" Name="CarId" />
+          <Property Type="Int32" Name="CarNum" />
+          <Property Type="Decimal" Name="Price" Precision="18" Scale="18" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="Int32" Name="CreateBy" />
+          <Property Type="DateTime" Name="CreateTime" />
+          <Property Type="String" Name="Remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="ZLzucheModel.FK_OrderDetails_Car" FromRole="OrderDetails" ToRole="Car" />
+          <NavigationProperty Name="Orders" Relationship="ZLzucheModel.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="SysDict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DictType" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DictName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DictValue" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OrderNo" />
+          <Property Type="Int32" Name="CreateBy" />
+          <Property Type="DateTime" Name="CreateTime" />
+          <Property Type="String" Name="Remark" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NewType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Subject" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreateBy" />
+          <Property Type="DateTime" Name="CreateTime" />
+        </EntityType>
+        <EntityType Name="LongRentCost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LongRentType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CarId" />
+          <Property Type="Decimal" Name="Price" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" />
+          <Property Type="String" Name="Remark" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FocusImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FileName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Describe" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkURL" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" />
+          <Property Type="String" Name="Remark" MaxLength="4000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ShopId" Nullable="false" />
+          <Property Type="Int32" Name="CarTypeId" />
+          <Property Type="String" Name="CarName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CarModel" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BasicInsure" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PreAuthorization" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Precision="18" Scale="2" />
+          <Property Type="String" Name="IsMileage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Describe" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="clzdj" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="clgzs" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ycspf" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="C1Yearzlfy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="C2Yearzlfy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="C3Yearzlfy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Remark" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="carnum" />
+          <Property Type="Decimal" Name="MonthPrice" Precision="18" Scale="2" />
+          <Property Type="String" Name="CarAge" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Derailleur" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CarType" Relationship="ZLzucheModel.FK_Car_CarType" FromRole="Car" ToRole="CarType" />
+          <NavigationProperty Name="OrderDetails" Relationship="ZLzucheModel.FK_OrderDetails_Car" FromRole="Car" ToRole="OrderDetails" />
+          <NavigationProperty Name="Shop" Relationship="ZLzucheModel.FK_Shop_Car" FromRole="Car" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="OrderType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="GetCarTime" />
+          <Property Type="DateTime" Name="ReturnCarTime" />
+          <Property Type="String" Name="HireDays" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Deposit" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" />
+          <Property Type="String" Name="Remark" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="isSendCar" />
+          <Property Type="String" Name="LinkMan" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RentMonth" />
+          <NavigationProperty Name="Customer" Relationship="ZLzucheModel.FK_Orders_Customer" FromRole="Orders" ToRole="Customer" />
+          <NavigationProperty Name="OrderDetails" Relationship="ZLzucheModel.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+        </EntityType>
+        <Association Name="FK_Car_CarType">
+          <End Type="ZLzucheModel.CarType" Role="CarType" Multiplicity="0..1" />
+          <End Type="ZLzucheModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="CarTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Car">
+          <End Type="ZLzucheModel.Car" Role="Car" Multiplicity="0..1" />
+          <End Type="ZLzucheModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shop_Car">
+          <End Type="ZLzucheModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="ZLzucheModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customer">
+          <End Type="ZLzucheModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="ZLzucheModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Type="ZLzucheModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="ZLzucheModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZLzucheModelStoreContainer" CdmEntityContainer="ZLzucheEntities">
+          <EntitySetMapping Name="BasicData"><EntityTypeMapping TypeName="ZLzucheModel.BasicData"><MappingFragment StoreEntitySet="BasicData">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Key" ColumnName="Key" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+            <ScalarProperty Name="Remark" ColumnName="Remark" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CarType"><EntityTypeMapping TypeName="ZLzucheModel.CarType"><MappingFragment StoreEntitySet="CarType">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="CarTypeName" ColumnName="CarTypeName" />
+            <ScalarProperty Name="Describe" ColumnName="Describe" />
+            <ScalarProperty Name="Remark" ColumnName="Remark" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Customer"><EntityTypeMapping TypeName="ZLzucheModel.Customer"><MappingFragment StoreEntitySet="Customer">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="PapersType" ColumnName="PapersType" />
+            <ScalarProperty Name="PapersNumber" ColumnName="PapersNumber" />
+            <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+            <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+            <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+            <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Remark" ColumnName="Remark" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Employee"><EntityTypeMapping TypeName="ZLzucheModel.Employee"><MappingFragment StoreEntitySet="Employee">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+            <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+            <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+            <ScalarProperty Name="Describe" ColumnName="Describe" />
+            <ScalarProperty Name="Remark" ColumnName="Remark" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Shop"><EntityTypeMapping TypeName="ZLzucheModel.Shop"><MappingFragment StoreEntitySet="Shop">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Province" ColumnName="Province" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="Area" ColumnName="Area" />
+            <ScalarProperty Name="Tel" ColumnName="Tel" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Describe" ColumnName="Describe" />
+            <ScalarProperty Name="Remark" ColumnName="Remark" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="rzzlApply">
+            <EntityTypeMapping TypeName="ZLzucheModel.rzzlApply">
+              <MappingFragment StoreEntitySet="rzzlApply">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ApplyTime" ColumnName="ApplyTime" />
+                <ScalarProperty Name="NeedInfo" ColumnName="NeedInfo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LinkTel" ColumnName="LinkTel" />
+                <ScalarProperty Name="Linkman" ColumnName="Linkman" />
+                <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ZLzucheModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CarNum" ColumnName="CarNum" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysDict">
+            <EntityTypeMapping TypeName="ZLzucheModel.SysDict">
+              <MappingFragment StoreEntitySet="SysDict">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="DictValue" ColumnName="DictValue" />
+                <ScalarProperty Name="DictName" ColumnName="DictName" />
+                <ScalarProperty Name="DictType" ColumnName="DictType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="ZLzucheModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="NewType" ColumnName="NewType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LongRentCost">
+            <EntityTypeMapping TypeName="ZLzucheModel.LongRentCost">
+              <MappingFragment StoreEntitySet="LongRentCost">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="LongRentType" ColumnName="LongRentType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FocusImage">
+            <EntityTypeMapping TypeName="ZLzucheModel.FocusImage">
+              <MappingFragment StoreEntitySet="FocusImage">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="LinkURL" ColumnName="LinkURL" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="ZLzucheModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Derailleur" ColumnName="Derailleur" />
+                <ScalarProperty Name="CarAge" ColumnName="CarAge" />
+                <ScalarProperty Name="MonthPrice" ColumnName="MonthPrice" />
+                <ScalarProperty Name="carnum" ColumnName="carnum" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="C3Yearzlfy" ColumnName="3Yearzlfy" />
+                <ScalarProperty Name="C2Yearzlfy" ColumnName="2Yearzlfy" />
+                <ScalarProperty Name="C1Yearzlfy" ColumnName="1Yearzlfy" />
+                <ScalarProperty Name="ycspf" ColumnName="ycspf" />
+                <ScalarProperty Name="clgzs" ColumnName="clgzs" />
+                <ScalarProperty Name="clzdj" ColumnName="clzdj" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsMileage" ColumnName="IsMileage" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PreAuthorization" ColumnName="PreAuthorization" />
+                <ScalarProperty Name="BasicInsure" ColumnName="BasicInsure" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+                <ScalarProperty Name="CarTypeId" ColumnName="CarTypeId" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ZLzucheModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="RentMonth" ColumnName="RentMonth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LinkMan" ColumnName="LinkMan" />
+                <ScalarProperty Name="isSendCar" ColumnName="isSendCar" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+                <ScalarProperty Name="HireDays" ColumnName="HireDays" />
+                <ScalarProperty Name="ReturnCarTime" ColumnName="ReturnCarTime" />
+                <ScalarProperty Name="GetCarTime" ColumnName="GetCarTime" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ZLzucheEntities" ZoomLevel="92">
+        <EntityTypeShape EntityType="ZLzucheModel.BasicData" Width="1.5" PointX="4" PointY="10.875" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZLzucheModel.CarType" Width="1.5" PointX="0.75" PointY="2" Height="1.9700325520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZLzucheModel.Customer" Width="1.5" PointX="5.125" PointY="5.5" Height="3.8802294921874996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZLzucheModel.Employee" Width="1.5" PointX="7.75" PointY="0.75" Height="3.1161507161458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZLzucheModel.Shop" Width="1.5" PointX="0.75" PointY="5.5" Height="2.9251310221354174" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZLzucheModel.rzzlApply" Width="1.5" PointX="0.625" PointY="9.875" Height="2.5430916341145817" />
+        <EntityTypeShape EntityType="ZLzucheModel.OrderDetails" Width="1.5" PointX="10.5" PointY="0.75" Height="3.1161507161458353" />
+        <EntityTypeShape EntityType="ZLzucheModel.SysDict" Width="1.5" PointX="11" PointY="5.625" Height="2.5430916341145817" />
+        <EntityTypeShape EntityType="ZLzucheModel.News" Width="1.5" PointX="7.375" PointY="4.75" Height="2.1610522460937531" />
+        <EntityTypeShape EntityType="ZLzucheModel.LongRentCost" Width="1.5" PointX="7.375" PointY="7.75" Height="2.3520719401041674" />
+        <EntityTypeShape EntityType="ZLzucheModel.FocusImage" Width="1.5" PointX="9.375" PointY="9.75" Height="2.1610522460937531" />
+        <EntityTypeShape EntityType="ZLzucheModel.Car" Width="1.5" PointX="3" PointY="0.75" Height="5.7904264322916674" />
+        <EntityTypeShape EntityType="ZLzucheModel.Orders" Width="1.5" PointX="8.25" PointY="15.75" Height="4.2622688802083388" />
+        <AssociationConnector Association="ZLzucheModel.FK_Car_CarType" >
+          <ConnectorPoint PointX="2.25" PointY="2.9850162760416667" />
+          <ConnectorPoint PointX="3" PointY="2.9850162760416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZLzucheModel.FK_OrderDetails_Car" >
+          <ConnectorPoint PointX="4.5" PointY="4.2768258580729164" />
+          <ConnectorPoint PointX="9.0416666666666661" PointY="4.2768258580729155" />
+          <ConnectorPoint PointX="9.2083333333333339" PointY="4.2768258580729164" />
+          <ConnectorPoint PointX="10.71875" PointY="4.2768258580729164" />
+          <ConnectorPoint PointX="10.71875" PointY="3.8661507161458331" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZLzucheModel.FK_Shop_Car" >
+          <ConnectorPoint PointX="2.25" PointY="6.0202132161458337" />
+          <ConnectorPoint PointX="3" PointY="6.0202132161458337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZLzucheModel.FK_Orders_Customer" >
+          <ConnectorPoint PointX="6.09375" PointY="9.3802294921875" />
+          <ConnectorPoint PointX="6.09375" PointY="17.881134440104169" />
+          <ConnectorPoint PointX="8.25" PointY="17.881134440104169" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZLzucheModel.FK_OrderDetails_Orders" >
+          <ConnectorPoint PointX="8.8124995000000013" PointY="15.75" />
+          <ConnectorPoint PointX="8.8124995000000013" PointY="10.352071940104167" />
+          <ConnectorPoint PointX="9.125" PointY="10.352071940104167" />
+          <ConnectorPoint PointX="9.125" PointY="4.1161507161458335" />
+          <ConnectorPoint PointX="9.5" PointY="4.1161507161458335" />
+          <ConnectorPoint PointX="9.5" PointY="2.3080753580729167" />
+          <ConnectorPoint PointX="10.5" PointY="2.3080753580729167" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

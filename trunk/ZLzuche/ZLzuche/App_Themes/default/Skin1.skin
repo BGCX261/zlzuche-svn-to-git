@@ -1,0 +1,8 @@
+﻿
+
+<asp:GridView runat="server" SkinID="gv" AutoGenerateColumns="False" CssClass="GridView" GridLines="None" Width="100%" 
+    AllowSorting="True" ModeEnable="True" AllowPaging="True">
+    <HeaderStyle CssClass="HeaderRow"/>   
+    <RowStyle CssClass="Row" />
+    <AlternatingRowStyle CssClass="AlternatingRow" />  
+</asp:GridView>

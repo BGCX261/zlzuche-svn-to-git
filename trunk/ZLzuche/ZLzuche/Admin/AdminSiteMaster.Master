@@ -1,0 +1,265 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminSiteMaster.master.cs"
+    Inherits="ZLzuche.Admin.AdminSiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>中联租车网网站后台</title>
+    <script type="text/javascript" src='<%=this.ResolveUrl("~/Scripts/jquery.min.js") %>'></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td
+        {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+        body
+        {
+            font-size: 15px;
+            font-family: arial, "宋体";
+            background-color: #fff;
+        }
+        .center_container
+        {
+            text-align: center;
+        }
+        .center
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .ul_loginpanel
+        {
+            margin: auto;
+            list-style: none;
+        }
+        .ul_loginpanel li
+        {
+            float: left;
+            color: #ffffff;
+            font-weight: bold;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .ul_cityShop
+        {
+            margin: 0;
+            list-style: none;
+        }
+        
+        .ul_cityShop li
+        {
+            float: left;
+            width: 90px;
+            line-height: 30px;
+            display: block;
+            text-align: left;
+        }
+        
+        .nav_selected, .nav_noselected
+        {
+            height: 44px;
+            width: 100px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .nav_selected
+        {
+            background-image: url(images/index_20.gif);
+            background-repeat: no-repeat;
+            background-position: center;
+            color: gold;
+        }
+        .nav_selected a:link, .nav_noselected a:link
+        {
+            text-decoration: none;
+        }
+        
+        .nav_selected a
+        {
+            color: gold;
+        }
+        
+        .nav_noselected a
+        {
+            color: #ffffff;
+        }
+        
+        .nav_selected a:hover, .nav_noselected a:hover
+        {
+            color: gold;
+        }
+        
+        .copyright_split
+        {
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 11px;
+            height: 28px;
+        }
+        
+        .GridView {
+            border-collapse: collapse;
+        }
+        .GridView .HeaderRow{
+            height: 32px;
+            background-color: #e0e0e0;
+        }
+        .GridView .AlternatingRow {
+            background-color: #f0f0f0;
+        }
+        .GridView .Row,.GridView .AlternatingRow {
+            height: 26px;
+            
+        }
+        .GridView .HeaderRow th, .GridView .Row td,.GridView .AlternatingRow td {
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+        
+        
+        
+        
+        .button
+        {
+            height: 28px;
+            line-height: 28px;
+            width: 80px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            border: solid 1px #EFBD4E;
+            background-color: #FEDF46;
+            color: #793510;
+            text-align: center;
+            float: left;
+        }
+        
+        .btn:link, .btn:hover
+        {
+            text-decoration: none;
+            float: left;
+        }
+        
+        .btn:link div, .btn:hover div
+        {
+            height: 28px;
+            line-height: 28px;
+            width: 80px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            border: solid 1px #EFBD4E;
+            background-color: #FEDF46;
+            color: #793510;
+            text-align: center;
+            float: left;
+            
+        }
+        .btn:hover div
+        {
+            border-color: #9FBE49;
+            color: #3E6605;
+        }
+    </style>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="center_container">
+            <table class="header center" cellspacing="0" cellpadding="0">
+                <tr style="width: 976px;">
+                    <td>
+                        <a href="<%=this.ResolveUrl("~/index.aspx") %>" style="border-style:none;">
+                            <img src="<%=this.ResolveUrl("~/images/index_02.gif") %>" width="246" height="68" style="border-style:none;"
+                                alt="">
+                        </a>
+                    </td>
+                    <td>
+                        <img src="<%=this.ResolveUrl("~/images/index_03.gif") %>" width="353" height="68"
+                            alt="">
+                    </td>
+                    <td style="background-image: url(<%=this.ResolveUrl("~/images/index_04.gif") %>); width: 375px">
+                        <div style="margin: auto; padding-left: 130px; color: #ffffff; font-weight: bold;">
+                            <ul class="ul_loginpanel">
+                                <li><a href='<%=this.ResolveUrl("~/Index.aspx") %>'>网站前台</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding-top: 10px;" class="center_container">
+            <table class="nav center" cellpadding="0" cellspacing="0" style="width: 976px;">
+                <tr style="background-image: url(<%=this.ResolveUrl("~/images/index_25.gif") %>);">
+                    <%--      <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/AdminIndex.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="hlkStartPage" runat="server" NavigateUrl="~/Admin/AdminIndex.aspx">后台首页</asp:HyperLink>
+                    </td>--%>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/OrderList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Admin/OrderList.aspx">订单管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/CustomerList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/CustomerList.aspx">会员管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/ShopList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Admin/ShopList.aspx">店铺管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/CarTypeList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/CarTypeList.aspx">车辆品牌管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/CarList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/Admin/CarList.aspx">车辆管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/NewList.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/NewList.aspx">新闻管理</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("~/Admin/FocusImage.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/Admin/FocusImageList.aspx">焦点图</asp:HyperLink>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        <div id="footer" style="margin-top: 20px;">
+            <div id="copyright" style="margin-top: 10px;">
+                <div style="background-color: #ccc; padding-top: 10px; width: 970px;" class="center">
+                    <div style="margin-top: 10px; padding-bottom: 10px;">
+                        <table cellpadding="0" cellspacing="0" border="0" class="center">
+                            <tr>
+                                <td>
+                                    <img src="<%=this.ResolveUrl("~/images/index_98.gif") %>" width="93" height="33"
+                                        alt="">
+                                </td>
+                                <td style="width: 450px; text-align: center;">
+                                    &nbsp;<div>
+                                        CopyRight&nbsp;@2013&nbsp;中联租车网&nbsp;版权所有
+                                    </div>
+                                    <div>
+                                        如果您对中联租车网站有任何意见，欢迎发送邮件到oyl@qq.com
+                                    </div>
+                                </td>
+                                <td>
+                                    <img src="<%=this.ResolveUrl("~/images/index_102.gif") %>" width="90" height="37"
+                                        alt="">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

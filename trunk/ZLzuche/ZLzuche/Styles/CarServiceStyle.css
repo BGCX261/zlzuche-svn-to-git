@@ -1,0 +1,83 @@
+﻿li:hover ul, li.over ul
+{
+	display: block;
+}
+/* The magic */
+-- > .ul_news
+{
+	margin-left: 60px;
+	margin-right: 40px;
+}
+
+.ul_news li
+{
+	float: left;
+	width: 250px;
+	line-height: 22px;
+	text-align: left;
+}
+
+.tab_selected, .tab_noselected
+{
+	height: 49px;
+	width: 155px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff;
+	cursor: pointer;
+}
+.tab_selected
+{
+	color: #000;
+	background-image: url(images/index_29.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.tab_selected a, .tab_noselected a
+{
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+}
+.tab_selected a
+{
+	color: #000;
+}
+.tab_noselected a
+{
+	color: #ffffff;
+}
+.tab_noselected a:hover, .tab_selected a:hover
+{
+	color: gold;
+}
+
+.left_justifying
+{
+	text-align: left;
+}
+.right_justifying
+{
+	text-align: right;
+}
+.paddingtop_10
+{
+	padding-top: 10px;
+}
+.paddingleft_10
+{
+	padding-left: 10px;
+}
+.paddingright_10
+{
+	padding-right: 10px;
+}
+.rent_title
+{
+	color: #555;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
+

@@ -1,0 +1,632 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ZLzuche.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>中联租车网</title>
+    <script src="<%=this.ResolveUrl("~/Scripts/jquery.min.js") %>" type="text/javascript"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/jquery-ui/jquery-ui.min.js") %>" type="text/javascript"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/jquery-ui/jquery.ui.datepicker-zh-CN.min.js") %>"
+        type="text/javascript"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/My97/WdatePicker.js") %>" type="text/javascript"></script>
+    <link href="<%=this.ResolveUrl("~/Scripts/jquery-ui/jquery-ui.min.css") %>" rel="stylesheet"
+        type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td
+        {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            color: #333;
+        }
+        body
+        {
+            font-size: 12px;
+            font-family: arial, "宋体";
+            background-color: #fff;
+        }
+        a
+        {
+            text-decoration: none;
+        }
+        .clear
+        {
+            clear: both;
+            height: 1px;
+            margin-top: -1px;
+            overflow: hidden;
+        }
+        .center_container
+        {
+            text-align: center;
+        }
+        .center
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .ul_loginpanel
+        {
+            margin: auto;
+            list-style: none;
+        }
+        .ul_loginpanel li
+        {
+            float: left;
+            color: #ffffff;
+            font-weight: bold;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        
+        .ul_loginpanel li a
+        {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        
+        .ul_cityShop
+        {
+            margin: 0;
+            list-style: none;
+        }
+        
+        .ul_cityShop li
+        {
+            float: left;
+            width: 90px;
+            line-height: 30px;
+            display: block;
+            text-align: left;
+        }
+        
+        .nav_selected, .nav_noselected
+        {
+            height: 44px;
+            width: 96px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .nav_selected
+        {
+            background-image: url(/images/index_20.gif);
+            background-repeat: no-repeat;
+            background-position: center;
+            color: gold;
+        }
+        .nav_selected a:link, .nav_noselected a:link
+        {
+            text-decoration: none;
+        }
+        
+        .nav_selected a
+        {
+            color: gold;
+        }
+        
+        .nav_noselected a
+        {
+            color: #ffffff;
+        }
+        
+        .nav_selected a:hover, .nav_noselected a:hover
+        {
+            color: gold;
+        }
+        
+        .copyright_split
+        {
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 11px;
+            height: 28px;
+        }
+        .header a
+        {
+            text-decoration: none;
+        }
+        
+        
+        .button
+        {
+            height: 28px;
+            line-height: 28px;
+            width: 80px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            border: solid 1px #EFBD4E;
+            background-color: #FEDF46;
+            color: #793510;
+            text-align: center;
+        }
+        
+        .btn:link, .btn:hover
+        {
+            text-decoration: none;
+        }
+        
+        .btn:link div, .btn:hover div
+        {
+            height: 28px;
+            line-height: 28px;
+            width: 80px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            border: solid 1px #EFBD4E;
+            background-color: #FEDF46;
+            color: #793510;
+            text-align: center;
+        }
+        .btn:hover div
+        {
+            border-color: #9FBE49;
+            color: #3E6605;
+        }
+        
+        .split
+        {
+            width: 98%;
+            height: 1px;
+            line-height: 1px;
+            border-top: 1px dashed #ccc;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .left_split
+        {
+            height: 98%;
+            width: 1px;
+            border-left: 1px dashed #ccc;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .required
+        {
+            color: red;
+        }
+        #footer .bigtitle
+        {
+            font-weight: bold;
+            font-size: 14px;
+            height: 36px;
+            line-height: 36px;
+            text-align: left;
+            color: #f5c322;
+            padding-left: 10px;
+        }
+        #footer .littletitle td
+        {
+            height: 26px;
+            line-height: 26px;
+            text-align: left;
+            padding-left: 10px;
+        }
+        
+        #footer .titlesplit
+        {
+            height: 76px;
+            width: 2px;
+            border-left: 1px solid #ccc;
+        }
+        
+        #footer .littletitle td a
+        {
+            color: #555;
+        }
+        #footer .littletitle td a:hover
+        {
+            color: #f5c322;
+        }
+        
+        
+        
+        
+        .GridView
+        {
+            border-collapse: collapse;
+        }
+        .GridView .HeaderRow
+        {
+            height: 32px;
+            background-color: #e0e0e0;
+        }
+        .GridView .AlternatingRow
+        {
+            background-color: #f0f0f0;
+        }
+        .GridView .Row, .GridView .AlternatingRow
+        {
+            height: 26px;
+        }
+        .GridView .HeaderRow th, .GridView .Row td, .GridView .AlternatingRow td
+        {
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+    </style>
+    <script type="text/javascript">
+        function IsLogin() {
+            var url = '<%=this.ResolveUrl("~/Admin/Validate.ashx?method=IsLogin") %>';
+            url += "&" + new Date().getTime();
+            var isLogin = true;
+            $.ajax({
+                type: 'get',
+                url: url,
+                async: false,
+                success: function (data) {
+                    data = eval("(" + data + ")");
+                    isLogin = data.IsSuccess;
+                }
+            });
+            if (isLogin == false) {
+                ShowLoginPanel();
+            }
+            return isLogin;
+        }
+
+        function ShowLoginPanel() {
+            $("#tb_LoginPaenl").dialog("open");
+        }
+
+        function Login_Click() {
+            var userName = $("#<%=this.txtUserName.ClientID %>").val();
+            var password = $("#<%=this.txtPassword.ClientID %>").val();
+            var msgAry = [];
+            if ($.trim(userName) == "")
+                msgAry.push("帐号");
+            if ($.trim(password) == "")
+                msgAry.push("密码");
+            if (msgAry.length > 0) {
+                var msg = msgAry.join("和");
+                alert(msg + "不能为空");
+                return false;
+            }
+
+            var url = '<%=this.ResolveUrl("~/Admin/Validate.ashx?method=OnLogin") %>';
+            url += "&username=" + userName + "&password=" + password;
+            url += "&timespace=" + new Date().getTime();
+            $.ajax({
+                type: 'get',
+                url: url,
+                async: false,
+                success: function (data) {
+                    data = eval("(" + data + ")");
+                    if (data.IsSuccess) {
+                        $("#li_loginInfo").html(data.Result);
+                        alert("登陆成功");
+                        $("#tb_LoginPaenl").dialog("close");
+                    } else {
+                        alert("帐号或者密码错误!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        $(function () {
+
+            $("#tb_LoginPaenl").dialog({
+                title: "用户登录",
+                autoOpen: false,
+                height: 300,
+                width: 350,
+                modal: true
+            });
+        });
+    </script>
+</head>
+<body>
+    <form runat="server">
+    <table id="tb_LoginPaenl" border="0" cellpadding="0" cellspacing="0" style="width: 300px;
+        height: 28px; display: none;">
+        <tr>
+            <td style="height: 26px; line-height: 26px; font-weight: bold; padding-left: 40px;">
+                帐号：
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding-left: 40px;">
+                <asp:TextBox runat="server" ID="txtUserName" Style="height: 28px; border: 1px solid #ccc;
+                    width: 230px;"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 26px; line-height: 26px; font-weight: bold; padding-left: 40px;">
+                密码：
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding-left: 40px;">
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Style="height: 28px;
+                    border: 1px solid #ccc; width: 230px;"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:LinkButton runat="server" CssClass="btn" ID="btnLogin" OnClientClick="Login_Click();return false;">
+                            <div>
+                                登录
+                            </div>
+                </asp:LinkButton>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 12px 40px 10px;">
+                <a href="<%=this.ResolveUrl("~/Account/Register.aspx") %>" target="_blank" style="float: right;">
+                    免费注册</a>
+            </td>
+        </tr>
+    </table>
+    <div class="page">
+        <div class="center_container">
+            <table class="header center" cellspacing="0" cellpadding="0">
+                <tr style="width: 976px;">
+                    <td style="background-image: url(/images/index_02.gif); width: 246px; height: 68px;">
+                        <a href="<%=this.ResolveUrl("~/index.aspx") %>" title="中联租车">
+                            <div style="background-color: transparent; width: 240px; height: 65px;">
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <img src="<%=this.ResolveUrl("~/images/index_03.gif") %>" width="353" height="68"
+                            alt="">
+                    </td>
+                    <td style="background-image: url(/images/index_04.gif); width: 375px">
+                        <div style="margin: auto; padding-left: 100px; color: #ffffff; font-weight: bold;">
+                            <ul class="ul_loginpanel">
+                                <li id="li_loginInfo">
+                                    <asp:HyperLink runat="server" NavigateUrl="~/Account/Login.aspx" Text="登录" ID="hyLogin"></asp:HyperLink>
+                                    <asp:Literal runat="server" ID="ltlLoginName"></asp:Literal></li>
+                                <li>| </li>
+                                <li><a href="<%=this.ResolveUrl("~/Account/Register.aspx") %>">注册</a> </li>
+                                <li>| </li>
+                                <li><a href="<%=this.ResolveUrl("~/MyZL.aspx") %>">我的中联</a> </li>
+                                <li>| </li>
+                                <li><a href="<%=this.ResolveUrl("~/HelpCenter.aspx?type=16") %>">帮助中心</a> </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding-top: 10px;" class="center_container">
+            <table class="nav center" cellpadding="0" cellspacing="0" style="width: 976px;">
+                <tr style="background-image: url(/images/index_25.gif);">
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("index.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="hlkStartPage" runat="server" NavigateUrl="~/Index.aspx">首页</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("shortrent.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ShortRent.aspx">短租预订</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("longrent.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/LongRent.aspx">长租预订</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("leasing.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Leasing.aspx">融资租赁</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("easyride.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/EasyRide.aspx">顺风车站</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("carservice.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/CarService.aspx">企业服务</asp:HyperLink>
+                    </td>
+                    <td class="<%=this.Request.RawUrl.ToLower().Contains("about.aspx") ? "nav_selected" :"nav_noselected" %>">
+                        <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/About.aspx">关于我们</asp:HyperLink>
+                    </td>
+                    <td class="nav_noselected">
+                        <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/HelpCenter.aspx?type=0">中联准新车</asp:HyperLink>
+                    </td>
+                    <td style="text-align: right;">
+                        <asp:ContentPlaceHolder runat="server" ID="navigationContent" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        <div id="footer" style="margin-top: 20px;">
+            <div class="center_container">
+                <table cellpadding="0" cellspacing="0" border="0" class="center" style="width: 976px;">
+                    <tr>
+                        <td colspan="3" class="bigtitle">
+                            01.预订说明
+                        </td>
+                        <td rowspan="3">
+                            <div class="titlesplit">
+                            </div>
+                        </td>
+                        <td class="bigtitle">
+                            02.会员管理
+                        </td>
+                        <td rowspan="3">
+                            <div class="titlesplit">
+                            </div>
+                        </td>
+                        <td colspan="2" class="bigtitle">
+                            03.紧急事务处理
+                        </td>
+                        <td rowspan="3">
+                            <div class="titlesplit">
+                            </div>
+                        </td>
+                        <td colspan="2" class="bigtitle">
+                            04.租费及结算
+                        </td>
+                        <td rowspan="3">
+                            <div class="titlesplit">
+                            </div>
+                        </td>
+                        <td class="bigtitle">
+                            05.帮助中心
+                        </td>
+                    </tr>
+                    <tr class="littletitle">
+                        <td>
+                            <asp:HyperLink runat="server" NavigateUrl="~/HelpCenter.aspx?type=0" Text="服务时间"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/HelpCenter.aspx?type=2"
+                                Text="待租车况"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="~/HelpCenter.aspx?type=4"
+                                Text="服务预订"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink10" runat="server" NavigateUrl="~/HelpCenter.aspx?type=14"
+                                Text="会员章程"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink11" runat="server" NavigateUrl="~/HelpCenter.aspx?type=6"
+                                Text="保险责任"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink12" runat="server" NavigateUrl="~/HelpCenter.aspx?type=7"
+                                Text="理赔说明"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink13" runat="server" NavigateUrl="~/HelpCenter.aspx?type=10"
+                                Text="价格说明"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="~/HelpCenter.aspx?type=12"
+                                Text="结算流程"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink15" runat="server" NavigateUrl="~/HelpCenter.aspx?type=16"
+                                Text="新手上路"></asp:HyperLink>
+                        </td>
+                    </tr>
+                    <tr class="littletitle">
+                        <td>
+                            <asp:HyperLink ID="HyperLink16" runat="server" NavigateUrl="~/HelpCenter.aspx?type=1"
+                                Text="短租产品"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="~/HelpCenter.aspx?type=3"
+                                Text="租车资格"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink18" runat="server" NavigateUrl="~/HelpCenter.aspx?type=5"
+                                Text="取还车说明"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink19" runat="server" NavigateUrl="~/HelpCenter.aspx?type=15"
+                                Text="会员细则"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink20" runat="server" NavigateUrl="~/HelpCenter.aspx?type=8"
+                                Text="事故处理"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink21" runat="server" NavigateUrl="~/HelpCenter.aspx?type=9"
+                                Text="救援及备用车"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink22" runat="server" NavigateUrl="~/HelpCenter.aspx?type=13"
+                                Text="储值卡"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink23" runat="server" NavigateUrl="~/HelpCenter.aspx?type=11"
+                                Text="租期计费方式"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink24" runat="server" NavigateUrl="~/HelpCenter.aspx?type=17"
+                                Text="常见问题"></asp:HyperLink>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="copyright" style="margin-top: 10px; margin-bottom: 20px;">
+                <div style="background-color: #ccc; padding-top: 10px; width: 970px;" class="center">
+                    <div>
+                        <table cellpadding="0" cellspacing="0" border="0" class="center">
+                            <tr>
+                                <td>
+                                    <a href='<%=this.ResolveUrl("About.aspx") %>' target="_blank">关于我们</a>
+                                </td>
+                                <%--<td class="copyright_split">
+                                    |
+                                </td>
+                                <td>
+                                    新闻中心
+                                </td>
+                                <td class="copyright_split">
+                                    |
+                                </td>
+                                <td>
+                                    隐私保护
+                                </td>
+                                <td class="copyright_split">
+                                    |
+                                </td>
+                                <td>
+                                    网站地图
+                                </td>--%>
+                                <td class="copyright_split">
+                                    |
+                                </td>
+                                <td>
+                                    <a href='<%=this.ResolveUrl("About.aspx") %>' target="_blank">联系我们</a>
+                                </td>
+                                <td class="copyright_split">
+                                    |
+                                </td>
+                                <td>
+                                    <a href='<%=this.ResolveUrl("About.aspx") %>' target="_blank">中联二手车</a>
+                                </td>
+                                <td class="copyright_split">
+                                    |
+                                </td>
+                                <td id="tdAdmin" runat="server" visible="false">
+                                    <a href='<%=this.ResolveUrl("~/Admin/OrderList.aspx") %>' target="_blank">网站后台</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-top: 10px; padding-bottom: 10px;">
+                        <table cellpadding="0" cellspacing="0" border="0" class="center">
+                            <tr>
+                                <td>
+                                    <img src="/images/index_98.gif" width="93" height="33" alt="">
+                                </td>
+                                <td style="width: 450px; text-align: center;">
+                                    &nbsp;<div>
+                                        CopyRight&nbsp;@2013&nbsp;中联租车网&nbsp;版权所有
+                                    </div>
+                                    <div style="padding-top: 8px;">
+                                        如果您对中联租车网站有任何意见，欢迎发送邮件到oyl@qq.com
+                                    </div>
+                                </td>
+                                <td>
+                                    <img src="/images/index_102.gif" width="90" height="37" alt="">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
